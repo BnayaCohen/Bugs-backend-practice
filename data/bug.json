@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "b101",
+    "title": "Button is here",
+    "description": "no no",
+    "severity": 2,
+    "createdAt": 1657022620725,
+    "creator": {
+      "nickname": "jhon"
+    }
+  },
+  {
+    "_id": "b102",
+    "title": "Error while watching",
+    "description": "the best",
+    "severity": 1,
+    "createdAt": 1657022620725,
+    "creator": {
+      "nickname": "puki"
+    }
+  },
+  {
+    "_id": "b103",
+    "title": "Warning appears",
+    "description": "hola",
+    "severity": 3,
+    "createdAt": 1657022620725,
+    "creator": {
+      "nickname": "muki"
+    }
+  },
+  {
+    "_id": "u73FC",
+    "title": "kingy",
+    "description": "helooo",
+    "severity": 3,
+    "createdAt": 1657022620725,
+    "creator": {
+      "nickname": "bnaya"
+    }
+  }
+]
