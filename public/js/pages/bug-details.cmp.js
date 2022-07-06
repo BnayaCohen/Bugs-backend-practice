@@ -6,7 +6,7 @@ export default {
   template: `
     <section v-if="bug" class="bug-details">
         <h1>{{bug.title}}</h1>
-        <h3>Creator: {{bug.creator.nickname}}</h3>
+        <h3>Creator: {{bug.creator.username}}</h3>
         <span :class='"severity" + bug.severity'>Severity: {{bug.severity}}</span>
         <h3>{{bug.description}}</h3>
         <router-link to="/bug">Back</router-link>

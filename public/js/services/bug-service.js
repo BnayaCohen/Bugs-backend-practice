@@ -24,7 +24,7 @@ function getEmptyBug() {
     description: '',
     severity: '',
     createdAt: Date.now(),
-    creator: { nickname: '' }
+    creator: { }
   }
 }
 

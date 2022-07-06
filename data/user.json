@@ -1,0 +1,34 @@
+[
+  {
+    "_id": "admin",
+    "fullname": "god",
+    "username": "admin",
+    "password": "admin",
+    "balance": 999999,
+    "isAdmin": true
+  },
+  {
+    "_id": "u101",
+    "fullname": "puki Da",
+    "username": "puki",
+    "password": "123",
+    "balance": 400,
+    "isAdmin": false
+  },
+  {
+    "_id": "u102",
+    "fullname": "Muki Da",
+    "username": "muki",
+    "password": "123",
+    "balance": 222,
+    "isAdmin": false
+  },
+  {
+    "_id": "QUFwH",
+    "fullname": "Guli Yat",
+    "username": "guli",
+    "password": "buli",
+    "balance": 100,
+    "isAdmin": false
+  }
+]

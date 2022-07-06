@@ -8,7 +8,7 @@ import bugFilter from '../cmps/bug-filter.cmp.js'
 export default {
   template: `
     <section class="bug-app">
-      <button @click="logOut">Log out</button>
+    <router-link v-if="user?.isAdmin" to="/user">Admin page</router-link>
         <div class="subheader">
           <bug-filter @setFilterBy="setFilterBy"></bug-filter> ||
           <router-link to="/bug/edit">Add New Bug</router-link> 
@@ -21,7 +21,7 @@ export default {
     `,
   data() {
     return {
-      isLoggedIn: false,
+      user: null,
       bugs: null,
       filterBy: {
         txt: '',
@@ -30,9 +30,12 @@ export default {
     }
   },
   created() {
-    this.isLoggedIn = userService.getLoggedInUser() ? true : false
+    this.user = userService.getLoggedInUser()
 
-    if (!this.isLoggedIn) this.$router.push('/login')
+    if (!this.user) {
+      this.$router.push('/login')
+      return
+    }
 
     this.loadBugs()
   },
@@ -59,9 +62,15 @@ export default {
       this.filterBy.pageIdx += dir;
       this.loadBugs()
     },
-    logOut() {
-      userService.logOut()
-        .then(() => this.$router.push('/login'))
+    logout() {
+      userService.logout()
+        .then(() => {
+          this.user = null
+          this.$router.push('/login')
+        })
+        .catch(err => {
+          console.log('Cannot logout', err)
+        })
     }
   },
   computed: {

@@ -5,7 +5,8 @@ export default {
   template: `<article className="bug-preview">
                 <span>🐛</span>
                 <h4>{{bug.title}}</h4>
-                <h5>Creator: {{bug.creator.nickname}}</h5>
+                <router-link :to="'/user/'+bug.creator._id">
+                  Creator: {{bug.creator.username}}</router-link>  
                 <span :class='"severity" + bug.severity'>Severity: {{bug.severity}}</span>
                 <h4>{{bug.description}}</h4>
                 <div class="actions">

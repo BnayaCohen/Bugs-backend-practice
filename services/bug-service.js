@@ -11,14 +11,24 @@ module.exports = {
 }
 
 function query(filterBy) {
-    const regex = new RegExp(filterBy.txt, "i")
-    var filteredBugs = bugs.filter(bug => regex.test(bug.title) || regex.test(bug.description))
-    filterBy.pageIdx = +filterBy.pageIdx// convert to number after the stringify
+    var filteredBugs = bugs
+    // Filter by user Id if user Id exists
+    if (filterBy.userId) {
+        filteredBugs = bugs.filter(bug => bug.creator._id === filterBy.userId)
+    }
+
+    // Option to filter by text after the user Id filter
+    if (filterBy.txt) {
+        const regex = new RegExp(filterBy.txt, "i")
+        filteredBugs = filteredBugs.filter(bug => regex.test(bug.title) || regex.test(bug.description))
+    }
+
+    filterBy.pageIdx = +filterBy.pageIdx// convert to number after the stringify   [asd,asd,asd,12d,asd] , [,123,asd,12,ad]
 
     if (filterBy.pageIdx < 0) filterBy.pageIdx = 0
 
     let startIdx = filterBy.pageIdx * PAGE_SIZE
-    if (startIdx > filteredBugs.length-1 ) {
+    if (startIdx > filteredBugs.length - 1) {
         filterBy.pageIdx = 0
         startIdx = 0
     }
@@ -35,9 +45,10 @@ function getById(bugId) {
     return Promise.resolve(bug)
 }
 
-function remove(bugId, nickname) {
+function remove(bugId, loggedinUser) {
     const idx = bugs.findIndex(bug => bug._id === bugId)
-    if (bugs[idx].creator.nickname !== nickname)
+    if (bugs[idx].creator._id !== loggedinUser._id
+        && !loggedinUser.isAdmin)
         return Promise.reject('Only the bug creator can remove this bug!')
     bugs.splice(idx, 1)
     return _saveBugsToFile().then()
